@@ -1,0 +1,81 @@
+/* Home.css */
+
+.home-container {
+    background-image: url('/public/accueil.jpeg');
+    background-size: cover;
+    /* Couvrir entièrement l'arrière-plan */
+    background-position: center;
+    /* Centrer l'image sur l'arrière-plan */
+    width: 100vw;
+    /* Prendre 100% de la largeur de la fenêtre */
+    height: 100vh;
+    /* Prendre 100% de la hauteur de la fenêtre */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style du titre */
+.home-container h1 {
+    font-size: 3rem;
+    /* Taille de police plus grande pour le titre */
+    margin-bottom: 20px;
+    /* Espace en dessous du titre */
+}
+
+/* Style du paragraphe */
+.home-container p {
+    font-size: 1.5rem;
+    /* Taille de police légèrement plus grande pour le paragraphe */
+    margin-bottom: 30px;
+    /* Espace en dessous du paragraphe */
+}
+
+/* Style du bouton */
+.home-container button {
+    padding: 15px 30px;
+    /* Espacement à l'intérieur du bouton */
+    font-size: 1.2rem;
+    /* Taille de police du bouton */
+    background-color: #000000;
+    /* Couleur de fond */
+    color: #fff;
+    /* Couleur du texte */
+    border: none;
+    /* Supprimer la bordure */
+    border-radius: 5px;
+    /* Bordure arrondie */
+    cursor: pointer;
+    /* Curseur de la souris */
+    transition: background-color 0.3s ease;
+    /* Transition fluide de couleur de fond */
+}
+
+/* Style du bouton au survol */
+.home-container button:hover {
+    background-color: #ffffff;
+    color: #000000;
+    /* Changement de couleur de fond au survol */
+}
+
+@media screen and (max-width: 900px) {
+/* Style du titre */
+    .home-container h1 {
+        font-size: 1.5rem;
+        /* Taille de police plus grande pour le titre */
+        margin-bottom: 20px;
+        /* Espace en dessous du titre */
+    }
+
+    /* Style du paragraphe */
+    .home-container p {
+        font-size: 1rem;
+        /* Taille de police légèrement plus grande pour le paragraphe */
+        margin: 30px;
+        /* Espace en dessous du paragraphe */
+    }
+    /* Styles à appliquer pour les écrans de petite taille */
+    /* Par exemple, vous pouvez réduire la taille de la police ou ajuster la mise en page */
+    
+}

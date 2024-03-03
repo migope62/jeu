@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+h1 {
+    font-family: "Libre Baskerville", serif;
+    font-weight: 400;
+    font-style: italic;
+}
+p {
+    font-family: "IM Fell English SC", serif;
+}
+a {
+    text-decoration: none;
+}
