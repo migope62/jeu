@@ -61,6 +61,14 @@ function Mur2({ texture, position }) {
         </mesh>
     );
 }
+function Murarriere({ texture, position }) {
+    return (
+        <mesh rotation={[-Math.PI / 1, 1.575, 0]} position={position}>
+            <planeGeometry args={[80, 15]} />
+            <meshStandardMaterial map={texture} />
+        </mesh>
+    );
+}
 
 
 function Roof({ texture, position }) {
@@ -78,6 +86,7 @@ function Scene() {
     const RoofTexture = useLoader(TextureLoader, './toituretuile1.jpg');
     const MurTexture = useLoader(TextureLoader, './mur.jpg');
     const Mur2Texture = useLoader(TextureLoader, './mur.jpg');
+    const MurarriereTexture = useLoader(TextureLoader, './mur.jpg');
 
 
     House2Texture.minFilter = THREE.LinearFilter;
@@ -86,6 +95,8 @@ function Scene() {
     MurTexture.maxFilter = THREE.LinearFilter;
     Mur2Texture.minFilter = THREE.LinearFilter;
     Mur2Texture.maxFilter = THREE.LinearFilter;
+    MurarriereTexture.minFilter = THREE.LinearFilter;
+    MurarriereTexture.maxFilter = THREE.LinearFilter;
     roadTexture.minFilter = THREE.LinearFilter;
     roadTexture.magFilter = THREE.LinearFilter;
     sidewalkTexture.minFilter = THREE.LinearFilter;
@@ -127,6 +138,7 @@ function Scene() {
                 
                 <Mur texture={MurTexture} position={[20, 7.5, -55]} />
                 <Mur2 texture={Mur2Texture} position={[20, 7.5, 25]} />
+                <Murarriere texture={MurarriereTexture} position={[34.7, 7.5,-15]} />
 
 
                 {/* Add more instances of Road with different positions */}
