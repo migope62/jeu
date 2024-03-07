@@ -1,64 +1,92 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Canvas, useLoader } from '@react-three/fiber';
 import { OrbitControls, Box, Plane } from '@react-three/drei';
-import * as THREE from 'three';
-import { TextureLoader } from 'three';
-import { Suspense } from 'react';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
+
 function Room() {
-    const wallTexture = useLoader(TextureLoader, './mur.jpg');
-    const floorTexture = useLoader(TextureLoader, './ruepave.png');
-    const ceilingTexture = useLoader(TextureLoader, './mur.jpg');
+    // Charger les textures 3D depuis différents fichiers GLB
+    const wallTextureGLB = useLoader(GLTFLoader, './briques.glb');
+    const ceilingTextureGLB = useLoader(GLTFLoader, './briques.glb');
+    const floorTextureGLB = useLoader(GLTFLoader, './briques.glb');
 
-    wallTexture.wrapS = THREE.RepeatWrapping;
-    wallTexture.wrapT = THREE.RepeatWrapping;
-    wallTexture.repeat.set(4, 4);
+    // Définir les coordonnées XYZ de la position du modèle et l'échelle du modèle glTF
+    const gltfPosition = [250, 0, 0];
+    const gltfScale = [0, 0, 0];
 
-    const gltf = useLoader(GLTFLoader, './marbre.glb');
-    const gltfPosition = [250, 0, 0]; // Définissez les coordonnées XYZ de la position du modèle
-    const gltfScale = [50, 50, 50]; // Définissez l'échelle du modèle glTF
+    // Extraire les textures 3D des modèles GLTF
+    const wallTexture = useRef();
+    const ceilingTexture = useRef();
+    const floorTexture = useRef();
 
+    wallTextureGLB.scene.traverse((child) => {
+        if (child.isMesh) {
+            wallTexture.current = child.material.map;
+        }
+    });
+
+    ceilingTextureGLB.scene.traverse((child) => {
+        if (child.isMesh) {
+            ceilingTexture.current = child.material.map;
+        }
+    });
+
+    floorTextureGLB.scene.traverse((child) => {
+        if (child.isMesh) {
+            floorTexture.current = child.material.map;
+        }
+    });
 
     return (
         <>
             {/* Mur gauche */}
-            <Box args={[1, 200, 500]} position={[-250, 0, 0]}>
-                <meshStandardMaterial map={wallTexture} />
+            <Box args={[1, 400, 1000]} position={[-500, 0, 0]}>
+                <meshStandardMaterial map={wallTexture.current} />
             </Box>
 
             {/* Mur droit */}
-            <Box args={[1, 200, 500]} position={[250, 0, 0]}>
-                <meshStandardMaterial map={wallTexture} />
+            <Box args={[1, 400, 1000]} position={[500, 0, 0]}>
+                <meshStandardMaterial map={wallTexture.current} />
             </Box>
 
             {/* Mur arrière */}
-            <Box args={[500, 200, 1]} position={[0, 0, -250]}>
-                <meshStandardMaterial map={wallTexture} />
+            <Box args={[1000, 400, 1]} position={[0, 0, -500]}>
+                <meshStandardMaterial map={wallTexture.current} />
             </Box>
 
             {/* Mur avant */}
-            <Box args={[500, 200, 1]} position={[0, 0, 250]}>
-                <meshStandardMaterial map={wallTexture} />
+            <Box args={[1000, 400, 1]} position={[0, 0, 500]}>
+                <meshStandardMaterial map={wallTexture.current} />
             </Box>
 
             {/* Sol */}
-            <Plane args={[500, 500]} position={[0, -100, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-                <meshStandardMaterial map={floorTexture} />
+            <Plane args={[1000, 1000]} position={[0, -200, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+                <meshStandardMaterial map={floorTexture.current} />
             </Plane>
 
             {/* Plafond */}
-            <Plane args={[500, 500]} position={[0, 100, 0]} rotation={[Math.PI / 2, 0, 0]}>
-                <meshStandardMaterial map={ceilingTexture} />
+            <Plane args={[1000, 1000]} position={[0, 200, 0]} rotation={[Math.PI / 2, 0, 0]}>
+                <meshStandardMaterial map={ceilingTexture.current} />
             </Plane>
 
             {/* Placer le modèle glTF dans un groupe pour le garder fixe par rapport à la scène */}
             <group position={gltfPosition}>
-                <primitive object={gltf.scene} scale={gltfScale} />
-                
+                <primitive object={wallTextureGLB.scene} scale={gltfScale} />
+                <primitive object={ceilingTextureGLB.scene} scale={gltfScale} />
+                <primitive object={floorTextureGLB.scene} scale={gltfScale} />
             </group>
+            {/* Pour rendre un élément cliquable */}
+            <mesh
+                position={[0, 0, -10]}
+                onClick={(e) => {
+                    // Rediriger vers une autre page au clic
+                    window.location.href = '/autre-page';
+                }}
+            >
+                <boxGeometry args={[5, 5, 5]} />
+                <meshStandardMaterial color="blue" />
+            </mesh>
         </>
-      
     );
 }
 
@@ -68,12 +96,10 @@ function App() {
             <Canvas camera={{ position: [0, 10, 20], fov: 60 }}>
                 <ambientLight intensity={0.1} />
                 <directionalLight position={[0, 1, 0]} intensity={0.1} />
-                <Suspense fallback={null}>
-                    <Room />
-                </Suspense>
+                <Room />
                 <OrbitControls />
             </Canvas>
-        </div >
+        </div>
     );
 }
 
