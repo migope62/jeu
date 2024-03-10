@@ -1,14 +1,14 @@
 import React, { useRef } from 'react';
 import { Canvas, useLoader } from '@react-three/fiber';
-import { OrbitControls, Box, Plane } from '@react-three/drei';
+import { OrbitControls, Box, Plane, Text } from '@react-three/drei';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 
 function Room() {
     // Charger les textures 3D depuis différents fichiers GLB
-    const wallTextureGLB = useLoader(GLTFLoader, './briques.glb');
-    const ceilingTextureGLB = useLoader(GLTFLoader, './briques.glb');
-    const floorTextureGLB = useLoader(GLTFLoader, './briques.glb');
+    const wallTextureGLB = useLoader(GLTFLoader, './brique.gltf');
+    const ceilingTextureGLB = useLoader(GLTFLoader, './brique.gltf');
+    const floorTextureGLB = useLoader(GLTFLoader, './brique.gltf');
 
     // Définir les coordonnées XYZ de la position du modèle et l'échelle du modèle glTF
     const gltfPosition = [250, 0, 0];
@@ -76,16 +76,19 @@ function Room() {
                 <primitive object={floorTextureGLB.scene} scale={gltfScale} />
             </group>
             {/* Pour rendre un élément cliquable */}
-            <mesh
+            <Text
                 position={[0, 0, -10]}
-                onClick={(e) => {
+                fontSize={5}
+                color="blue"
+                anchorX="center"
+                anchorY="middle"
+                onClick={() => {
                     // Rediriger vers une autre page au clic
                     window.location.href = '/autre-page';
                 }}
             >
-                <boxGeometry args={[5, 5, 5]} />
-                <meshStandardMaterial color="blue" />
-            </mesh>
+                Commencer à jouer
+            </Text>
         </>
     );
 }
@@ -95,7 +98,7 @@ function App() {
         <div style={{ width: '100vw', height: '100vh' }}>
             <Canvas camera={{ position: [0, 10, 20], fov: 60 }}>
                 <ambientLight intensity={0.1} />
-                <directionalLight position={[0, 1, 0]} intensity={0.1} />
+                <directionalLight position={[0, 1, 0]} intensity={0.2} />
                 <Room />
                 <OrbitControls />
             </Canvas>
