@@ -7,6 +7,7 @@ function Room() {
     // Charger la texture JPG
     const textureJPG = useLoader(TextureLoader, '/mur.jpg');
 
+
     // Utilisez la texture JPG pour tous les matériaux
     const wallTexture = textureJPG;
     const ceilingTexture = textureJPG;
@@ -43,36 +44,23 @@ function Room() {
             <Plane args={[1000, 1000]} position={[0, 200, 0]} rotation={[Math.PI / 2, 0, 0]}>
                 <meshStandardMaterial map={ceilingTexture} />
             </Plane>
-            {/* Colonne */}
-            <mesh position={[-300, 0, -200]}>
-                <cylinderGeometry args={[20, 20, 400, 32]} />
-                <meshStandardMaterial color="white" />
-            </mesh>
 
-            {/* Statue */}
-            <mesh position={[0, 0, 300]}>
-                <sphereGeometry args={[100, 32, 32]} />
-                <meshStandardMaterial color="marble" />
-            </mesh>
 
-            {/* Table */}
-            <mesh position={[400, 50, -100]}>
-                <boxGeometry args={[200, 100, 100]} />
-                <meshStandardMaterial color="brown" />
-            </mesh>
+
+
             {/* Pour rendre un élément cliquable */}
             <Text
                 position={[0, 0, -250]}
-                fontSize={10}
-                color="red"
+                fontSize={20}
+                color="white"
                 anchorX="center"
                 anchorY="middle"
                 onClick={() => {
-                    // Rediriger vers une autre page au clic
                     window.location.href = '/Home2';
                 }}
+                
             >
-                Prêt?
+                Devenez un héros de l'empire romain ! Jouez dès maintenant.
             </Text>
         </>
     );
@@ -81,11 +69,16 @@ function Room() {
 function App() {
     return (
         <div style={{ width: '100vw', height: '100vh' }}>
-            <Canvas camera={{ position: [0, 10, 20], fov: 60 }}>
+            <Canvas camera={{ position: [0, 0, 200], fov: 60 }}>
                 <ambientLight intensity={0.1} />
                 <directionalLight position={[0, 1, 0]} intensity={0.2} />
                 <Room />
-                <OrbitControls />
+                <OrbitControls
+                    enablePan={false} // Empêche le panoramique (mouvement latéral)
+                    maxPolarAngle={Math.PI / 2} // Limite l'angle vertical de la caméra
+                    minDistance={100} // Distance minimale à partir de l'origine
+                    maxDistance={500} // Distance maximale à partir de l'origine
+                />
             </Canvas>
         </div>
     );
