@@ -1,30 +1,19 @@
 .page-choix-personnage {
     background-color: rgb(0, 0, 0);
-    /* Couleur de fond */
     padding: 20px;
-    /* Espacement intérieur */
     width: 100%;
-    /* Prendre 100% de la largeur */
     height: 100vh;
-    /* Prendre 100% de la hauteur de la fenêtre */
     display: flex;
-    /* Utilisation de flexbox pour centrer */
     flex-direction: column;
-    /* Alignement vertical */
     justify-content: center;
-    /* Centrer verticalement */
     align-items: center;
-    /* Centrer horizontalement */
 }
 
 .page-choix-personnage h1 {
     font-size: 3rem;
     color: white;
-    /* Taille du titre agrandie */
     margin-bottom: 20px;
-    /* Espacement en dessous du titre */
     text-align: center;
-    /* Centrage du texte */
 }
 
 .personnages {
@@ -36,32 +25,34 @@
 
 .personnage {
     margin: 20px;
-    /* Marge agrandie */
     text-align: center;
     text-decoration: none;
     color: #333;
-    /* Couleur du texte */
 }
 
 .personnage img {
     width: 300px;
-    /* Largeur agrandie */
     height: auto;
     border-radius: 10px;
-    /* Bordures arrondies */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Ombre douce */
     transition: transform 0.3s ease;
-    /* Transition de l'effet de survol */
 }
 
 .personnage h2 {
     margin-top: 10px;
     font-size: 1.5rem;
-    /* Taille du nom agrandie */
 }
 
 .personnage:hover img {
     transform: scale(1.1);
-    /* Effet de zoom au survol */
+}
+
+@media only screen and (max-width: 768px) {
+.page-choix-personnage {
+        padding: 10px;
+    }
+        
+        .personnage img {
+            width: 100px;
+        }
 }
