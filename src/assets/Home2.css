@@ -1,54 +1,56 @@
 .Home2-container {
-    background-image: url('/public/Home2.jpeg');
+    background-image: url('/public/Home.png');
     background-size: cover;
-    /* Couvrir entièrement l'arrière-plan */
-    background-position: center;
-    /* Centrer l'image sur l'arrière-plan */
     width: 100vw;
-    /* Prendre 100% de la largeur de la fenêtre */
     height: 100vh;
-    /* Prendre 100% de la hauteur de la fenêtre */
     display: flex;
     flex-direction: column;
-    justify-content:center;
-    align-items: center;
+    justify-content: center;
+    align-items: baseline;
     background-color: #f5f5f5;
-    /* Couleur de fond */
     padding: 20px;
-    /* Espacement intérieur */
     border-radius: 10px;
-    /* Bordures arrondies */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Ombre douce */
+    text-align: center;
 
 }
 
 .Home2-container h1 {
     font-size: 2rem;
-    /* Taille du titre */
     margin-bottom: 20px;
-    /* Espacement en dessous du titre */
 }
 
 .Home2-container ul {
     list-style-type: none;
-    /* Suppression des puces de liste */
     padding: 0;
 }
 
 .Home2-container li {
     text-decoration: none;
-    /* Suppression du soulignement des liens */
-    color: rgba(255, 255, 255, 0.496);
-    /* Couleur du texte */
+    color: white;
     font-size: 5rem;
-    /* Taille du texte */
     transition: color 0.3s ease;
-    /* Transition de couleur fluide */
     margin: 2vw;
+    background-color: red;
+    border: 15px solid transparent;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
 
 .Home2-container li:hover {
-    color: #ffffff;
-    /* Changement de couleur au survol */
+    background-color: black;
+
+}
+
+@media only screen and (max-width: 768px) {
+    .Home2-container {          
+            align-items: center;        
+        }
+    .Home2-container li {
+        font-size: 3.5rem;
+        padding: 35px;
+    }
 }
