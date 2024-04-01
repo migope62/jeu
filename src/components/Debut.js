@@ -52,7 +52,7 @@ function Room() {
             <Text
                 position={[0, 0, -250]}
                 fontSize={20}
-                color="white"
+                color="#7d7d7d"
                 anchorX="center"
                 anchorY="middle"
                 onClick={() => {

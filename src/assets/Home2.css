@@ -31,7 +31,7 @@
     font-size: 5rem;
     transition: color 0.3s ease;
     margin: 2vw;
-    background-color: red;
+    background-color: #FF9592;
     border: 15px solid transparent;
     border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -41,7 +41,7 @@
 }
 
 .Home2-container li:hover {
-    background-color: black;
+    background-color: #500F1C;
 
 }
 
